@@ -6,7 +6,7 @@ This is the backend for **Flexi Fairy**, an app to connect people who need help 
 
 ## 🚀 Features
 
-- Submit new **requests** for help (e.g., groceries, books)
+- Submit new **requests** for help (flexi needs)
 - Submit **offers** to help others
 - View all current requests and offers
 - Optional filtering by user or request ID
