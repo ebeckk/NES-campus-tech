@@ -28,17 +28,29 @@ def create_request(request: RequestTable):
 
 # get requests
 @router.get("/requests")
-def get_requests(user_id: Optional[str] = Query(None)):
-    requests_ref = db.collection("requests").stream()     # gets all documents in the "requests" collection
+def get_requests(
+    user_id: Optional[str] = Query(None),
+    limit: Optional[int] = Query(None),
+    sort: Optional[str] = Query("desc") # sort requests by newest first                   
+):
+    
+    # build the base query with sorting
+    query = db.collection("requests").order_by("timestamp", direction ="DESCENDING" if sort =="desc" else "ASCENDING")
+   
+    # apply limit (optional)
+    if limit:
+        query = query.limit(limit)
+    
+    docs = query.stream()
     requests = []
 
-    for r in requests_ref:              
+    for r in docs:
         data = r.to_dict()
         if user_id and data.get("user_id") != user_id:
             continue
         data["id"] = r.id
         requests.append(data)
-
+    
     return requests
-
+   
 __all__ = ["router"]

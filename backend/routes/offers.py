@@ -34,11 +34,22 @@ def create_offer(offer: OffersTable):
 
 # api endpoint to get offers
 @router.get("/offers")
-def get_offers(user_id: Optional[str] = Query(None), request_id: Optional[str] = Query(None)):
-    offers_ref = db.collection("offers").stream()
+def get_offers(
+    user_id: Optional[str] = Query(None), 
+    request_id: Optional[str] = Query(None),
+    limit: Optional[int] = Query(None),
+    sort: Optional[str] = Query("desc")
+):
+    
+    query = db.collection("offers").order_by("timestamp", direction="DESCENDING" if sort == "desc" else "ASCENDING")
+
+    if limit:
+        query = query.limit(limit)
+    
+    docs = query.stream()
     offers = []
 
-    for o in offers_ref:
+    for o in docs:
         data = o.to_dict()
         if user_id and data.get("user_id") != user_id:
             continue

@@ -1,8 +1,12 @@
 import firebase_admin
-from firebase_admin import credentials, firestore
+from dotenv import load_dotenv
+from firebase_admin import credentials, firestore, initialize_app
 import os
 
-cred_path = os.environ("serviceAccountKey")
-firebase_admin.initialize_app(cred_path)
+load_dotenv()
 
+cred_path = os.environ["GOOGLE_APPLICATION_CREDENTIALS"]
+cred = credentials.Certificate(cred_path)
+
+initialize_app(cred)
 db = firestore.client()
