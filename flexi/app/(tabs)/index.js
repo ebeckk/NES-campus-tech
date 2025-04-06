@@ -10,6 +10,7 @@ import Header from '../components/Header';
 import Want from '../components/Want';
 import MyRec from '../components/MyRecords';
 import Give from '../components/Give';
+import BackButton from '../components/BackButton'; // ⬅️ NEW
 import foodbk from '@/assets/images/food.jpg';
 import handShake from '@/assets/images/handshake.webp';
 import mascot from '@/assets/images/donsMascot.jpg';
@@ -25,32 +26,25 @@ const App = () => {
     if (activeCard === 'give') {
       return (
         <View style={styles.detail}>
-          <TouchableOpacity onPress={onBack}>
-            <Text style={styles.back}>Back</Text>
-          </TouchableOpacity>
+          <BackButton onPress={onBack} />
           <Give />
         </View>
       );
     } else if (activeCard === 'want') {
       return (
         <View style={styles.detail}>
-          <TouchableOpacity onPress={onBack}>
-            <Text style={styles.back}>Back</Text>
-          </TouchableOpacity>
+          <BackButton onPress={onBack} />
           <Want />
         </View>
       );
     } else if (activeCard === 'myrec') {
       return (
         <View style={styles.detail}>
-          <TouchableOpacity onPress={onBack}>
-            <Text style={styles.back}>Back</Text>
-          </TouchableOpacity>
+          <BackButton onPress={onBack} />
           <MyRec />
         </View>
       );
     } else {
-      // Home view with all cards
       return (
         <View>
           <View style={styles.cards}>
@@ -114,6 +108,8 @@ const styles = StyleSheet.create({
     width: 300,
     height: 200,
     justifyContent: 'center',
+    borderRadius: 20, 
+    overflow: 'hidden',
   },
   cardText: {
     color: 'white',
@@ -124,12 +120,8 @@ const styles = StyleSheet.create({
   },
   detail: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  back: {
-    fontSize: 20,
-    color: 'blue',
-    marginBottom: 20,
+    justifyContent: 'flex-start',
+    alignItems: 'flex-start',
+    padding: 20,
   },
 });
