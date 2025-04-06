@@ -4,7 +4,7 @@ import { Text, StyleSheet, View } from 'react-native';
 export default function Give() {
     return (
         <View style={[styles.header]}>
-            <Text style={styles.title}>Give</Text>
+            <Text style={styles.title} >Fariys</Text>
             <Text></Text>
         </View>
     );

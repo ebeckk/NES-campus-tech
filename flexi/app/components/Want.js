@@ -1,11 +1,11 @@
 import React from 'react';
-import { Text, StyleSheet, View } from 'react-native';
+import { Text, StyleSheet, View, Button } from 'react-native';
 
 export default function Want() {
     return (
         <View style={[styles.header]}>
-            <Text style={styles.title}>Want</Text>
-            <Text></Text>
+            <Text style={styles.title}>Need Food</Text>
+
         </View>
     );
 }
