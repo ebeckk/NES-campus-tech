@@ -10,7 +10,7 @@ const SettingsScreen = () => {
     <View style={styles.container}>
       {/* 🧑 Avatar Box */}
       <Image
-        source={{ uri: 'https://i.pravatar.cc/150?img=3' }}
+        source={{ uri: 'https://s.hdnux.com/photos/01/34/15/02/24170637/4/1920x0.jpg' }}
         style={styles.avatar}
       />
 
