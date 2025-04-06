@@ -1,26 +1,31 @@
 import React from 'react';
-import { Text, StyleSheet, SafeAreaView } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 
 export default function Header() {
-    return (
-        <SafeAreaView style={styles.header}>
-            <Text style={styles.title}>Flexi Fairy</Text>
-        </SafeAreaView>
-    );
+  return (
+    <View style={styles.header}>
+      <Text style={styles.title}>✨ Flexi Fairy ✨</Text>
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({
-    header: {
-        padding: 1,
-        backgroundColor: 'green',
-        alignItems: 'top',
-        borderBottomWidth: 1,
-        borderColor: '#ddd',
-
-    },
-    title: {
-        color: 'white',
-        fontSize: 50,
-        fontWeight: 'bold',
-    },
+  header: {
+    backgroundColor: 'green', // deep purple
+    paddingVertical: 20,
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.3,
+    shadowRadius: 4.65,
+    elevation: 8,
+  },
+  title: {
+    fontSize: 32,
+    fontWeight: 'bold',
+    color: '#fff',
+    textShadowColor: '#000',
+    textShadowOffset: { width: 1, height: 1 },
+    textShadowRadius: 2,
+  },
 });
