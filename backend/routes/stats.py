@@ -7,7 +7,7 @@ router = APIRouter()
 
 @router.get("/stats")
 def get_stats():
-    # count the tota requests and total open requests
+    # count the total requests and total open requests
     total_requests = len(list(db.collection("requests").stream()))
     open_requests = len(list(
         db.collection("requests").where("status", "==", "open").stream()

@@ -9,14 +9,13 @@ from auth_utils import verify_token
 
 router = APIRouter()
 
-class OffersTable(BaseModel):
-    user_id: str                           # person making the offer
+class OffersTable(BaseModel):                         
     request_id: Optional[str] = None       # the request they are respodning to (optional)
     message: str = ""                      # message that the user would write on their post 
 
 
 @router.post("/offers")
-def create_offer(offer: OffersTable):
+def create_offer(offer: OffersTable, decoded_user=Depends(verify_token)):
     # if the offer is for a specific request, make sure it exists
     if offer.request_id:
         request_ref = db.collection("requests").document(offer.request_id)
@@ -25,7 +24,7 @@ def create_offer(offer: OffersTable):
 
     # save the offer     
     offer_data = {             
-        "user_id": offer.user_id,
+        "user_id": decoded_user["uid"],
         "request_id": offer.request_id,
         "message": offer.message,
         "status": "open",

@@ -10,15 +10,14 @@ from auth_utils import verify_token
 router = APIRouter()
 
 class RequestTable(BaseModel):
-    user_id: str
     amount: int
     note: str = ""
 
 # create requests
 @router.post("/requests") 
-def create_request(request: RequestTable):
+def create_request(request: RequestTable, decoded_user=Depends(verify_token)):
     request_data = { 
-        "user_id": request.user_id,   # user_id
+        "user_id": decoded_user["uid"],   # user_id
         "amount": request.amount,     # amount of $ requesting
         "note": request.note,         # message
         "status": "open",             # set request as open

@@ -19,3 +19,12 @@ def verify_token(authorization: str = Header(...)) -> dict:
     except Exception:
         raise HTTPException(status_code=401, detail="Invalid or expired token")
 
+
+# def verify_token(authorization: str = Header(None)) -> dict:
+#     # ✅ Fake user identity for local testing only
+#     return {
+#         "uid": "test_user_123",
+#         "email": "test@example.com",
+#         "name": "Test User",
+#         "email_verified": True
+#     }
